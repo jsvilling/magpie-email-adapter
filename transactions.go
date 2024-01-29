@@ -7,10 +7,12 @@ const amountMarker = "Betrag: "
 const dateMarker = "Buchungsdatum: "
 const valutaMarker = "Valutadatum: "
 const currencyMarker = "CHF"
+const sourceMarker = "Buchung:"
 
 type Transaction struct {
-	Account string `json:"account"`
-	Balance string `json:"balance"`
-	Amount  string `json:"amount"`
-	Date    string `json:"date`
+	Account string `json:"Account"`
+	Balance string `json:"Balance"`
+	Amount  string `json:"Amount"`
+	Date    string `json:"Date`
+	Source  string `json:"Source`
 }

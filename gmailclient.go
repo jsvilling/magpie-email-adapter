@@ -135,13 +135,15 @@ func (gmailSrv *GmailSrv) GetTransactionFromEmail(messageId string) Transaction 
 	iAmount := strings.Index(msgContent, amountMarker)
 	iDate := strings.Index(msgContent, dateMarker)
 	iValuta := strings.Index(msgContent, valutaMarker)
+	iSource := strings.Index(msgContent, sourceMarker)
 
 	account := trimAccountName(strings.Trim(msgContent[iAccount+len(accountMarker):iBalance], "\n"))
 	balance := trimCurrency(strings.Trim(msgContent[iBalance+len(balanceMarker):iAmount], "\n"))
 	amount := trimCurrency(strings.Trim(msgContent[iAmount+len(amountMarker):iDate], "\n"))
 	date := strings.Trim(msgContent[iDate+len(dateMarker):iValuta], "\n")
+	source := strings.Split(msgContent[iSource+len(sourceMarker):len(msgContent)-1], "\n")[1]
 
-	return Transaction{account, balance, amount, date}
+	return Transaction{account, balance, amount, date, source}
 }
 
 func mkSplitGetAtN(delim string, n int) func(string) string {
